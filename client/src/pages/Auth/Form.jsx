@@ -29,8 +29,8 @@ const registerSchema = yup.object().shape({
   city: yup.string().required("required"),
   state: yup.string().required("required"),
   zipcode: yup.string().required("required"),
-  company: yup.string(),
-  occupation: yup.string(),
+  company: yup.string().required("required"),
+  occupation: yup.string().required("required"),
   picture: yup.string().required("required"),
 });
 
@@ -67,6 +67,7 @@ const Form = () => {
   const isLogin = pageType === "login";
   const isRegister = pageType === "register";
 
+  // REGISTER ON SUBMIT
   const register = async (values, onSubmitProps) => {
     // this allows us to send form info with image
     const formData = new FormData();
@@ -90,6 +91,7 @@ const Form = () => {
     }
   };
 
+  // LOGIN ON SUBMIT
   const login = async (values, onSubmitProps) => {
     const loggedInResponse = await fetch("http://localhost:8800/auth/login", {
       method: "POST",
