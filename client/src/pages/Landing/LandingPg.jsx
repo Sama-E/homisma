@@ -4,7 +4,6 @@ import Navbar from '../Nav/Navbar';
 const LandingPg = () => {
   return (
     <div>
-      <Navbar />
       LandingPg
     </div>
   )
