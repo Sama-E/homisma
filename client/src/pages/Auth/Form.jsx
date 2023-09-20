@@ -25,8 +25,12 @@ const registerSchema = yup.object().shape({
   lastName: yup.string().required("required"),
   email: yup.string().email("invalid email").required("required"),
   password: yup.string().required("required"),
-  location: yup.string().required("required"),
-  occupation: yup.string().required("required"),
+  address: yup.string().required("required"),
+  city: yup.string().required("required"),
+  state: yup.string().required("required"),
+  zipcode: yup.string().required("required"),
+  company: yup.string(),
+  occupation: yup.string(),
   picture: yup.string().required("required"),
 });
 
@@ -40,7 +44,11 @@ const initialValuesRegister = {
   lastName: "",
   email: "",
   password: "",
-  location: "",
+  address: "",
+  city: "",
+  state: "",
+  zipcode: "",
+  company: "",
   occupation: "",
   picture: "",
 };
@@ -65,10 +73,10 @@ const Form = () => {
     for (let value in values) {
       formData.append(value, values[value]);
     }
-    formData.append("picturePath", values.picture.name);
+    formData.append("profilePicPath", values.picture.name);
 
     const savedUserResponse = await fetch(
-      "http://localhost:3001/auth/register",
+      "http://localhost:8800/auth/register",
       {
         method: "POST",
         body: formData,
@@ -83,7 +91,7 @@ const Form = () => {
   };
 
   const login = async (values, onSubmitProps) => {
-    const loggedInResponse = await fetch("http://localhost:3001/auth/login", {
+    const loggedInResponse = await fetch("http://localhost:8800/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
@@ -97,7 +105,7 @@ const Form = () => {
           token: loggedIn.token,
         })
       );
-      navigate("/home");
+      navigate("/dashboard");
     }
   };
 
@@ -158,14 +166,44 @@ const Form = () => {
                   sx={{ gridColumn: "span 2" }}
                 />
                 <TextField
-                  label="Location"
+                  label="Address"
                   onBlur={handleBlur}
                   onChange={handleChange}
-                  value={values.location}
-                  name="location"
-                  error={Boolean(touched.location) && Boolean(errors.location)}
-                  helperText={touched.location && errors.location}
+                  value={values.address}
+                  name="address"
+                  error={Boolean(touched.address) && Boolean(errors.address)}
+                  helperText={touched.address && errors.address}
                   sx={{ gridColumn: "span 4" }}
+                />
+                <TextField
+                  label="City"
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={values.city}
+                  name="city"
+                  error={Boolean(touched.city) && Boolean(errors.city)}
+                  helperText={touched.city && errors.city}
+                  sx={{ gridColumn: "span 3" }}
+                />
+                <TextField
+                  label="State"
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={values.state}
+                  name="state"
+                  error={Boolean(touched.state) && Boolean(errors.state)}
+                  helperText={touched.state && errors.state}
+                  sx={{ gridColumn: "span 1" }}
+                />
+                <TextField
+                  label="Zip Code"
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={values.zipcode}
+                  name="zipcode"
+                  error={Boolean(touched.zipcode) && Boolean(errors.zipcode)}
+                  helperText={touched.zipcode && errors.zipcode}
+                  sx={{ gridColumn: "span 2" }}
                 />
                 <TextField
                   label="Occupation"
@@ -177,6 +215,18 @@ const Form = () => {
                     Boolean(touched.occupation) && Boolean(errors.occupation)
                   }
                   helperText={touched.occupation && errors.occupation}
+                  sx={{ gridColumn: "span 4" }}
+                />
+                <TextField
+                  label="Company"
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={values.company}
+                  name="company"
+                  error={
+                    Boolean(touched.company) && Boolean(errors.company)
+                  }
+                  helperText={touched.company && errors.company}
                   sx={{ gridColumn: "span 4" }}
                 />
                 <Box

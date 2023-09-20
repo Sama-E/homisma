@@ -14,6 +14,8 @@ export const register = async (req, res) => {
       city,
       state,
       zipcode,
+      company,
+      occupation,
       profilePicPath,
       // associates,
     } = req.body;
@@ -30,6 +32,8 @@ export const register = async (req, res) => {
       city,
       state,
       zipcode,
+      company,
+      occupation,
       profilePicPath,
       // associates,
     });

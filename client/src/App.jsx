@@ -15,7 +15,7 @@ import Profile from './pages/Profile/Profile';
 function App() {
   const mode = useSelector((state) => state.mode);
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
-  // const isAuth = Boolean(useSelector((state) => state.token));
+  const isAuth = Boolean(useSelector((state) => state.token));
 
   return (
     <div className="app">
@@ -28,8 +28,8 @@ function App() {
             <Route path="/login" element={<Login />} />
 
             {/* PROTECTED ROUTES */}
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/dashboard" element={isAuth ? <Dashboard /> : <Navigate to="/" /> } />
+            <Route path="/profile" element={isAuth ? <Profile /> : <Navigate to="/" /> } />
           </Routes>
         </ThemeProvider>
       </BrowserRouter>

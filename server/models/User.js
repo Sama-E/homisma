@@ -41,6 +41,14 @@ const UserSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    company: {
+      type: String,
+      default: "",
+    },
+    occupation: {
+      type: String,
+      default: "",
+    },
     profilePicPath: {
       type: String,
       default: "",
