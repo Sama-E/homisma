@@ -1,8 +1,12 @@
 import React from 'react'
+import Navbar from '../Nav/Navbar';
 
 const LandingPg = () => {
   return (
-    <div>LandingPg</div>
+    <div>
+      <Navbar />
+      LandingPg
+    </div>
   )
 }
 
