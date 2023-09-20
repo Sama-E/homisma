@@ -5,8 +5,9 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import { themeSettings } from "./theme";
 
+//Login + Register
 import Login from "./pages/Auth/Login";
-import Register from "./pages/Auth/Register";
+
 import LandingPg from './pages/Landing/LandingPg';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Profile from './pages/Profile/Profile';
@@ -25,7 +26,6 @@ function App() {
             {/* UNPROTECTED ROUTES */}
             <Route path="/" element={<LandingPg />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
 
             {/* PROTECTED ROUTES */}
             <Route path="/dashboard" element={<Dashboard />} />
