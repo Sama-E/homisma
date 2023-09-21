@@ -9,8 +9,9 @@ import { themeSettings } from "./theme";
 import Login from "./pages/Auth/Login";
 
 import LandingPg from './pages/Landing/LandingPg';
-import Dashboard from './pages/Dashboard/Dashboard';
 import Profile from './pages/Profile/Profile';
+import Dashboard from './pages/Dashboard/Dashboard';
+import Layout from "./pages/Dashboard/Layout";
 
 function App() {
   const mode = useSelector((state) => state.mode);
@@ -23,13 +24,16 @@ function App() {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <Routes>
+            
             {/* UNPROTECTED ROUTES */}
             <Route path="/" element={<LandingPg />} />
             <Route path="/login" element={<Login />} />
-
             {/* PROTECTED ROUTES */}
-            <Route path="/dashboard" element={isAuth ? <Dashboard /> : <Navigate to="/" /> } />
+            <Route element={isAuth ? <Layout /> : <Navigate to="/" />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+            </Route>
             <Route path="/profile" element={isAuth ? <Profile /> : <Navigate to="/" /> } />
+          
           </Routes>
         </ThemeProvider>
       </BrowserRouter>
