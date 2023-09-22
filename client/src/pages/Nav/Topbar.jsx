@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   LightModeOutlined,
@@ -24,15 +24,16 @@ import {
 import FlexBetween from "/src/components/FlexBetween";
 import { setMode, setLogout } from "/src/state";
 
-const Topbar = ({ isSidebarOpen, setIsSidebarOpen, isNonMobile, }) => {
+const Topbar = ({ isSidebarOpen, setIsSidebarOpen, isNonMobile }) => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const theme = useTheme();
-
+  const [userImage, setUserImage] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
   const isOpen = Boolean(anchorEl);
   const handleClick = (event) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
+  console.log(user)
 
 
   return (
@@ -98,7 +99,7 @@ const Topbar = ({ isSidebarOpen, setIsSidebarOpen, isNonMobile, }) => {
               <Box
                 component="img"
                 alt="profile"
-                src={user.profilePicPath}
+                src={`../public/uploads/${user.profilePicPath}`}
                 height="32px"
                 width="32px"
                 borderRadius="50%"

@@ -41,6 +41,11 @@ const UserSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    phoneNumber: {
+      type: String,
+      min:10,
+      max: 10,
+    },
     company: {
       type: String,
       default: "",
@@ -53,9 +58,22 @@ const UserSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    housePicPath:{
+      type: Array,
+      default: [],
+    },
     associates: {
       type: Array,
       default: [],
+    },
+    transactions: {
+      type: Array,
+      default: [],
+    },
+    role: {
+      type: String,
+      enum: ["user", "pro", "admin"],
+      default:"user"
     },
   },
   { timestamps: true }
