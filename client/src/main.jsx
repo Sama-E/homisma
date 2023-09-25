@@ -1,10 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App.jsx';
-import './index.css';
-import authReducer from "./state";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
 import { configureStore } from "@reduxjs/toolkit";
+import globalReducer from "/src/state";
 import { Provider } from "react-redux";
+import { setupListeners } from "@reduxjs/toolkit/query";
+import { api } from "/src/state/api";
 import {
   persistStore,
   persistReducer,
@@ -18,22 +20,23 @@ import {
 import storage from "redux-persist/lib/storage";
 import { PersistGate } from "redux-persist/integration/react";
 
-//Persist User Session
-//https://www.npmjs.com/package/redux-persist
-
 const persistConfig = { key: "root", storage, version: 1 };
-const persistedReducer = persistReducer(persistConfig, authReducer);
+const persistedReducer = persistReducer(persistConfig, globalReducer);
 const store = configureStore({
-  reducer: persistedReducer,
+  reducer: {
+    persistedReducer,
+    [api.reducerPath]: api.reducer,
+  },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    }).concat(api.middleware),
 });
+setupListeners(store.dispatch);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>

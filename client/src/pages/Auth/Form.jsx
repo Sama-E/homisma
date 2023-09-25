@@ -93,7 +93,7 @@ const Form = () => {
 
   // LOGIN ON SUBMIT
   const login = async (values, onSubmitProps) => {
-    const loggedInResponse = await fetch("http://localhost:8800/auth/login", {
+    const loggedInResponse = await fetch(import.meta.env.VITE_LOGIN, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),

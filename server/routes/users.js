@@ -10,9 +10,9 @@ const router = express.Router();
 
 /* READ */
 router.get("/:id", verifyToken, getUser);
-router.get("/:id/associates", verifyToken, getUserAssociates);
+// router.get("/:id/associates", verifyToken, getUserAssociates);
 
 /* UPDATE */
-router.patch("/:id/:associateId", verifyToken, addRemoveAssociate);
+// router.patch("/:id/:associateId", verifyToken, addRemoveAssociate);
 
 export default router;
