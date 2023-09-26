@@ -71,8 +71,8 @@ app.use(cors());
 
 
 /* ROUTES */
-app.use("/auth", authRoutes);
-app.use("/users", userRoutes);
+// app.use("/auth", authRoutes);
+// app.use("/users", userRoutes);
 
 app.use("/client", clientRoutes);
 app.use("/general", generalRoutes);

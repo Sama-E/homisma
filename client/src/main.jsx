@@ -7,32 +7,13 @@ import globalReducer from "/src/state";
 import { Provider } from "react-redux";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { api } from "/src/state/api";
-import {
-  persistStore,
-  persistReducer,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-} from "redux-persist";
-import storage from "redux-persist/lib/storage";
-import { PersistGate } from "redux-persist/integration/react";
 
-const persistConfig = { key: "root", storage, version: 1 };
-const persistedReducer = persistReducer(persistConfig, globalReducer);
 const store = configureStore({
   reducer: {
-    persistedReducer,
+    global: globalReducer,
     [api.reducerPath]: api.reducer,
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
-    }).concat(api.middleware),
+  middleware: (getDefault) => getDefault().concat(api.middleware),
 });
 setupListeners(store.dispatch);
 
@@ -40,9 +21,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistStore(store)}>
-        <App />
-      </PersistGate>
+      <App />
     </Provider>
   </React.StrictMode>
 );

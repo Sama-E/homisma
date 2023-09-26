@@ -1,4 +1,4 @@
-// Color design tokens export
+// color design tokens export
 export const tokensDark = {
   grey: {
     0: "#ffffff", // manually adjusted
@@ -15,7 +15,6 @@ export const tokensDark = {
     900: "#141414",
     1000: "#000000", // manually adjusted
   },
-
   primary: {
     // blue
     100: "#d3d4de",
@@ -28,21 +27,22 @@ export const tokensDark = {
     800: "#0d1025",
     900: "#070812",
   },
-
-  secondary:{
-    //lightblue
-    100: "#f2fcff",
-    200: "#e5f9ff",
-    300: "#d9f5ff",
-    400: "#ccf2ff",
-    500: "#bfefff",
-    600: "#99bfcc",
-    700: "#738f99",
-    800: "#4c6066",
-    900: "#263033"
+  secondary: {
+    // yellow
+    50: "#f0f0f0", // manually adjusted
+    100: "#fff6e0",
+    200: "#ffedc2",
+    300: "#ffe3a3",
+    400: "#ffda85",
+    500: "#ffd166",
+    600: "#cca752",
+    700: "#997d3d",
+    800: "#665429",
+    900: "#332a14",
   },
 };
 
+// function that reverses the color palette
 function reverseTokens(tokensDark) {
   const reversedTokens = {};
   Object.entries(tokensDark).forEach(([key, val]) => {

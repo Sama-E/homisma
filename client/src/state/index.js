@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  mode: "light",
-  user: null,
-  token: null,
+  mode: "dark",
+  userId: "63701cc1f03239b7f700000e",
+//   user: null,
+//   token: null,
 };
 
 export const globalSlice = createSlice({
@@ -11,41 +12,8 @@ export const globalSlice = createSlice({
   initialState,
   reducers: {
     setMode: (state) => {
-      state.mode = state.mode === "light" ? "light" : "dark";
+      state.mode = state.mode === "light" ? "dark" : "light";
     },
-    setLogin: (state, action) => {
-      state.user = action.payload.user;
-      state.token = action.payload.token;
-    },
-    setLogout: (state) => {
-      state.user = null;
-      state.token = null;
-    },
-  }
-});
-
-export const { setMode, setLogin, setLogout } = globalSlice.actions;
-
-export default globalSlice.reducer;
-
-
-// import { createSlice } from "@reduxjs/toolkit";
-
-// //Global State
-// const initialState = {
-//   mode: "light",
-//   user: null,
-//   token: null,
-// };
-
-// //Auth state, Mode state + reducers
-// export const authSlice = createSlice({
-//   name: "auth",
-//   initialState,
-//   reducers: {
-//     setMode: (state) => {
-//       state.mode = state.mode === "light" ? "dark" : "light";
-//     },
 //     setLogin: (state, action) => {
 //       state.user = action.payload.user;
 //       state.token = action.payload.token;
@@ -54,16 +22,9 @@ export default globalSlice.reducer;
 //       state.user = null;
 //       state.token = null;
 //     },
-//     setAssociates: (state, action) => {
-//       if (state.user) {
-//         state.user.associates = action.payload.associates;
-//       } else {
-//         console.error("User associates non-existent :(");
-//       }
-//     },
-//   },
-// });
+  },
+});
 
-// export const { setMode, setLogin, setLogout, setAssociates } =
-//   authSlice.actions;
-// export default authSlice.reducer;
+export const { setMode } = globalSlice.actions;
+
+export default globalSlice.reducer;
